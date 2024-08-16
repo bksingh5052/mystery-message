@@ -22,7 +22,7 @@ const Page = ({ params }: { params: { username: string } }) => {
 
   const onSubmit = async (data: z.infer<typeof messageSchema>) => {
     try {
-      console.log(data.content)
+
       const response = await axios.post(`/api/send-message`, {
         username: params.username,
         content: data.content,

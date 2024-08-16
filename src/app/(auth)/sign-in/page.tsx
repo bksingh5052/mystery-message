@@ -45,7 +45,7 @@ const Page = () => {
       identifier: data.identifier,
       password: data.password
     })
-    console.log(response)
+
     setIsSubmitting(false)
     if(response?.error){
       toast({

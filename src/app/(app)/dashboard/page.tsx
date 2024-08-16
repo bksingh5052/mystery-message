@@ -56,7 +56,7 @@ const Page = () => {
       setIsSwithchLoading(false)
     }
   
-    },[setValue, toast])
+    },[setValue])
 
     const fetchMessages = useCallback(async(refresh: boolean = false)=>{
       setIsLoading(true)
@@ -86,7 +86,7 @@ const Page = () => {
 
 
     useEffect(()=>{
-      console.log("1",session)
+
       if(!session || !session.user ) return
       fetchAcceptMessages()
       fetchMessages()

@@ -32,7 +32,7 @@ const Page = () => {
 
   const onSubmit = async (data: z.infer<typeof verifySchema>) => {
     try {
-      console.log(data.code)
+
       const response = await axios.post(`/api/verify-code`, {
         username: params.username,
         code: data.code,
