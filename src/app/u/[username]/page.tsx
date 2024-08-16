@@ -11,7 +11,7 @@ import axios, { AxiosError } from "axios";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-const page = ({ params }: { params: { username: string } }) => {
+const Page = ({ params }: { params: { username: string } }) => {
   const form = useForm<z.infer<typeof messageSchema>>({
     resolver: zodResolver(messageSchema),
   });
@@ -73,4 +73,4 @@ const page = ({ params }: { params: { username: string } }) => {
   );
 };
 
-export default page;
+export default Page;

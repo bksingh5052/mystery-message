@@ -28,7 +28,7 @@ import { Message } from "@/models/User";
 
 type MessageCardProps = {
   message: Message;
-  onMessageDelete : (messageId: string)=> void
+  onMessageDelete : (messageId:any)=> void
 
 }
 
@@ -36,6 +36,7 @@ type MessageCardProps = {
 
 const MessageCard = ({message, onMessageDelete}:MessageCardProps) => {
   console.log(message)
+  // const date = message.createdAt.toString
   const {toast} = useToast()
   const handleDeleteConfirm = async ()=>{
     const response = await axios.delete<ApiResponse>(`/api/delete-message/${message._id}`)
@@ -67,7 +68,7 @@ const MessageCard = ({message, onMessageDelete}:MessageCardProps) => {
   </AlertDialogContent>
 </AlertDialog>
 
-        <CardDescription> {message.createdAt.slice(0,10)}</CardDescription>
+        <CardDescription> {message.createdAt.toString().slice(0,10)}</CardDescription>
       </CardHeader>
     </Card>
   );

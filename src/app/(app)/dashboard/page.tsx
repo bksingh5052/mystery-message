@@ -17,7 +17,8 @@ import { useForm } from "react-hook-form"
 
 
 
-const page = () => {
+
+const Page = () => {
   const [messages, setMessages]= useState<Message[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [isSwithchLoading, setIsSwithchLoading] = useState(false)
@@ -25,6 +26,7 @@ const page = () => {
   const {data:session} = useSession()
 
   const {toast} = useToast()
+
 
   const handleDeleteMessage  = (messageId:string)=>{
     setMessages(messages.filter((message)=>(message._id !== messageId)))
@@ -54,7 +56,7 @@ const page = () => {
       setIsSwithchLoading(false)
     }
   
-    },[setValue])
+    },[setValue, toast])
 
     const fetchMessages = useCallback(async(refresh: boolean = false)=>{
       setIsLoading(true)
@@ -79,7 +81,7 @@ const page = () => {
         setIsLoading(false)
         setIsSwithchLoading(false)
       }
-    }, [setIsLoading, setMessages])
+    }, [setIsLoading, setMessages, toast])
  
 
 
@@ -111,7 +113,10 @@ const page = () => {
     
 
     const username = session?.user.username;
-    const baseUrl = window.location.origin
+    let baseUrl;
+    if (typeof window !== 'undefined') {
+       baseUrl = window.location.origin;
+   }
     const profileUrl = `${baseUrl}/u/${username}`
 
     const copyToClipboard = ()=>{
@@ -173,4 +178,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

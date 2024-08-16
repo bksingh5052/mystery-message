@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useDebounceValue, useDebounceCallback } from "usehooks-ts";
+import {  useDebounceCallback } from "usehooks-ts";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import { signupSchema } from "@/schemas/signUpSchema";
@@ -23,7 +23,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 
-const page = () => {
+const Page = () => {
   const [username, setUsername] = useState("");
   const [usernameMessage, setUsernameMessage] = useState("");
   const [isCheackingUsername, setIsCheackingUsername] = useState(false);
@@ -47,8 +47,9 @@ const page = () => {
         setIsCheackingUsername(true);
         setUsernameMessage("");
         try {
-          const response = await axios.get(
-            `/api/check-username-unique?username=${username}`
+          const response = await axios.post(
+            `/api/check-username-unique`,
+            {username}
           );
           setUsernameMessage(response.data.message);
         } catch (error) {
@@ -184,4 +185,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
